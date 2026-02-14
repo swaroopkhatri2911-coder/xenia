@@ -2,7 +2,6 @@ function startAnalysis() {
   const url = document.getElementById("url").value;
   const log = document.getElementById("agents");
 
-  // Extract name from URL
   let name = "there";
   if (url.includes("/in/")) {
     const parts = url.split("/in/")[1].split("/")[0];
@@ -10,63 +9,111 @@ function startAnalysis() {
     name = name.charAt(0).toUpperCase() + name.slice(1);
   }
 
-  // Random personality logic
-  const personalities = [
-    { type: "Fast decision maker", tone: "Short Direct", reply: "82%" },
-    { type: "Analytical thinker", tone: "Technical", reply: "74%" },
-    { type: "Relationship-driven", tone: "Emotional", reply: "68%" }
-  ];
-
-  const selected = personalities[Math.floor(Math.random() * personalities.length)];
-
-  log.innerHTML = `
-  Personality Agent: Scanning communication tone...<br>
-  Personality Agent: ${selected.type}<br>
-  Emotion Agent: Growth and innovation focused<br>
-  Strategy Agent: ${selected.tone} outreach selected<br>
-  Message Agent: Generating multi-channel messages
-  `;
-
-  generateMessages(name, selected);
-}
-
-function generateMessages(name, profile) {
-
-  document.getElementById("email").innerText =
-`Subject: Quick idea for your workflow
+  const profiles = [
+    {
+      type: "Fast decision maker",
+      tone: "Short Direct",
+      reply: "82%",
+      email: `Subject: Quick idea for your team
 
 Hi ${name},
 
-I was going through your profile and noticed your ${profile.type.toLowerCase()} style of working.
+Came across your profile and it’s clear you move fast and value execution over long processes.
 
-We recently built an AI system that helps teams eliminate repetitive tasks and move faster without increasing workload.
+We’ve built a lightweight AI system that removes repetitive work from your team’s daily flow. Most teams start seeing time savings within the first week.
 
-Teams similar to yours are saving 6–8 hours every week using it.
+If you’re open to it, I’d love to show you a quick demo. It’ll take less than 10 minutes.
 
-Would you be open to a quick 10-minute demo sometime this week?
+– Team Skynex`,
+
+      wa: `Hey ${name}, saw your profile and your fast execution style really stood out.
+
+We built a simple AI tool that removes repetitive work and saves teams hours every week.
+
+Open to a quick demo sometime?`,
+
+      li: `Hi ${name}, your fast execution mindset really stood out from your profile.
+
+We built a tool that helps teams automate repetitive tasks and move faster. Would you be open to a quick demo?`
+    },
+
+    {
+      type: "Analytical thinker",
+      tone: "Technical",
+      reply: "74%",
+      email: `Subject: Workflow optimization idea
+
+Hi ${name},
+
+While going through your profile, I noticed your structured and analytical approach to problem solving.
+
+We’ve been working on an AI system designed specifically for teams that value efficiency, clarity, and measurable improvements. It helps identify repetitive workflows and automates them without disrupting existing processes.
+
+Happy to share a short walkthrough if this sounds relevant to what you’re working on.
 
 Best regards,  
-Team Skynex`;
+Team Skynex`,
 
-  document.getElementById("wa").innerText =
-`Hey ${name}, I came across your profile and noticed your ${profile.type.toLowerCase()} approach.
+      wa: `Hi ${name}, I noticed your analytical approach from your profile.
 
-We built an AI system that helps teams automate repetitive tasks and move faster.
+We built an AI system focused on workflow optimization and measurable efficiency gains.
 
-Would love to show you a quick demo if you're interested.`;
+Would you be interested in a short walkthrough?`,
 
-  document.getElementById("li").innerText =
-`Hi ${name},
+      li: `Hello ${name},
 
-I saw your profile and your ${profile.type.toLowerCase()} mindset stood out.
+Your profile reflects a very structured and analytical working style. We’ve built an AI system that focuses on workflow optimization and measurable efficiency gains.
 
-We’ve built an AI solution that helps teams automate repetitive workflows and improve speed.
+Would love to share a short overview if you're open to it.`
+    },
 
-Would you be open to a short demo?`;
+    {
+      type: "Relationship-driven leader",
+      tone: "Emotional",
+      reply: "68%",
+      email: `Subject: Thought this might help your team
 
-  document.getElementById("reply").innerText = profile.reply;
+Hi ${name},
+
+Your profile gives the impression of someone who values people, collaboration, and long-term growth.
+
+We recently built an AI system that quietly handles repetitive tasks in the background, so teams can spend more time on meaningful work and less time on manual processes.
+
+If this aligns with how you like to work, I’d be happy to show you a quick demo.
+
+Warm regards,  
+Team Skynex`,
+
+      wa: `Hey ${name}, your profile really reflects a people-first leadership style.
+
+We built an AI system that removes repetitive tasks so teams can focus on meaningful work.
+
+Would love to show you a quick demo if you're interested.`,
+
+      li: `Hi ${name},
+
+Your profile reflects a strong focus on people and long-term growth. We built an AI system that handles repetitive tasks so teams can focus on more meaningful work.
+
+Happy to share a short demo if you'd like.`
+    }
+  ];
+
+  const selected = profiles[Math.floor(Math.random() * profiles.length)];
+
+  log.innerHTML = `
+  Personality Agent: ${selected.type}<br>
+  Emotion Agent: Communication preference detected<br>
+  Strategy Agent: ${selected.tone} outreach selected<br>
+  Message Agent: Generating personalized messages
+  `;
+
+  document.getElementById("email").innerText = selected.email;
+  document.getElementById("wa").innerText = selected.wa;
+  document.getElementById("li").innerText = selected.li;
+
+  document.getElementById("reply").innerText = selected.reply;
   document.getElementById("tone").innerText = "High";
-  document.getElementById("strategy").innerText = profile.tone;
+  document.getElementById("strategy").innerText = selected.tone;
 
   showTab("email");
 }
