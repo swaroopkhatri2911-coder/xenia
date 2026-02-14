@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Skynex AI</title>
+  <title>Skynex AI Dashboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
 
+  <!-- Header -->
   <header>
     <h1>SKYNEX AI</h1>
     <p>Multi-Agent Outreach Control Panel</p>
+    <p style="font-size:14px;color:#6b7280;">
+      AI agents analyze a profile before generating personalized outreach
+    </p>
+    <p style="text-align:center;color:#10b981;font-weight:bold;">
+      AI Council Status: Active
+    </p>
   </header>
 
-  <!-- Input -->
+  <!-- Lead Input -->
   <div class="panel">
+    <h3>Lead Profile Input</h3>
     <input id="url" placeholder="Paste LinkedIn Profile URL">
     <button onclick="startAnalysis()">Analyze Profile</button>
   </div>
 
-  <!-- Agent Cards -->
+  <!-- AI Agents -->
+  <h3>AI Agent Council</h3>
   <div class="agent-grid">
     <div class="agent">Personality Agent</div>
     <div class="agent">Emotion Agent</div>
@@ -28,23 +37,28 @@
     <div class="agent">Automation Agent</div>
   </div>
 
-  <!-- Discussion Log -->
-  <div id="agents" class="panel log"></div>
+  <!-- Agent Log -->
+  <div id="agents" class="panel log">
+    Awaiting profile input...
+  </div>
 
-  <!-- Message Tabs -->
+  <!-- Messages -->
   <div class="panel">
+    <h3>Generated Multi-Channel Messages</h3>
+
     <div class="tabs">
       <button onclick="showTab('email')">Email</button>
       <button onclick="showTab('wa')">WhatsApp</button>
       <button onclick="showTab('li')">LinkedIn</button>
     </div>
 
-    <div id="email" class="tab"></div>
-    <div id="wa" class="tab"></div>
-    <div id="li" class="tab"></div>
+    <div id="email" class="tab">No message generated yet.</div>
+    <div id="wa" class="tab" style="display:none;"></div>
+    <div id="li" class="tab" style="display:none;"></div>
   </div>
 
-  <!-- Analytics -->
+  <!-- Analytics Dashboard -->
+  <h3>Communication Analytics</h3>
   <div class="dashboard">
     <div class="card">
       <h3>Reply Probability</h3>
@@ -60,7 +74,7 @@
     </div>
   </div>
 
-  <!-- Chart -->
+  <!-- Strategy Chart -->
   <div class="panel">
     <h3>Strategy Analysis</h3>
     <div class="bar"><span id="bar1"></span> Short Direct – 82%</div>
@@ -69,8 +83,22 @@
   </div>
 
   <!-- Automation -->
+  <h3>Automation Engine</h3>
   <button onclick="automation()">Run Automation</button>
-  <div id="automation" class="panel log"></div>
+  <div id="automation" class="panel log">
+    Automation system idle...
+  </div>
+
+  <!-- Explanation Panel -->
+  <div class="panel">
+    <h3>Why Skynex Works</h3>
+    <ul>
+      <li>Analyzes personality before messaging</li>
+      <li>Multi-agent decision system</li>
+      <li>Strategy-first communication approach</li>
+      <li>Automation-ready architecture</li>
+    </ul>
+  </div>
 
 </div>
 
