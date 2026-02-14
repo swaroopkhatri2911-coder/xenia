@@ -1,66 +1,72 @@
 function startAnalysis() {
+  const url = document.getElementById("url").value;
   const log = document.getElementById("agents");
 
-  log.innerHTML = "Initializing AI council...";
+  // Extract name from URL
+  let name = "there";
+  if (url.includes("/in/")) {
+    const parts = url.split("/in/")[1].split("/")[0];
+    name = parts.split("-")[0];
+    name = name.charAt(0).toUpperCase() + name.slice(1);
+  }
 
-  setTimeout(() => {
-    log.innerHTML += "<br>Personality Agent: Scanning communication tone...";
-  }, 500);
+  // Random personality logic
+  const personalities = [
+    { type: "Fast decision maker", tone: "Short Direct", reply: "82%" },
+    { type: "Analytical thinker", tone: "Technical", reply: "74%" },
+    { type: "Relationship-driven", tone: "Emotional", reply: "68%" }
+  ];
 
-  setTimeout(() => {
-    log.innerHTML += "<br>Personality Agent: Fast decision maker detected";
-  }, 1200);
+  const selected = personalities[Math.floor(Math.random() * personalities.length)];
 
-  setTimeout(() => {
-    log.innerHTML += "<br>Emotion Agent: Innovation-driven mindset";
-  }, 1900);
+  log.innerHTML = `
+  Personality Agent: Scanning communication tone...<br>
+  Personality Agent: ${selected.type}<br>
+  Emotion Agent: Growth and innovation focused<br>
+  Strategy Agent: ${selected.tone} outreach selected<br>
+  Message Agent: Generating multi-channel messages
+  `;
 
-  setTimeout(() => {
-    log.innerHTML += "<br>Strategy Agent: Recommending short direct outreach";
-  }, 2600);
-
-  setTimeout(() => {
-    log.innerHTML += "<br>Message Agent: Generating multi-channel messages";
-  }, 3200);
-
-  setTimeout(() => {
-    generateMessages();
-    speakResult();
-  }, 4000);
+  generateMessages(name, selected);
 }
 
-function generateMessages() {
+function generateMessages(name, profile) {
+
   document.getElementById("email").innerText =
-`Subject: Quick idea to boost your team’s speed
+`Subject: Quick idea for your workflow
 
-Hi there,
+Hi ${name},
 
-I noticed your focus on fast execution and innovation. Our team built an AI automation system that helps teams eliminate repetitive tasks and move faster.
+I was going through your profile and noticed your ${profile.type.toLowerCase()} style of working.
 
-Companies using it are saving up to 6–8 hours per week.
+We recently built an AI system that helps teams eliminate repetitive tasks and move faster without increasing workload.
 
-Would you be open to a quick 10-minute demo?
+Teams similar to yours are saving 6–8 hours every week using it.
 
-Best,
+Would you be open to a quick 10-minute demo sometime this week?
+
+Best regards,  
 Team Skynex`;
 
   document.getElementById("wa").innerText =
-`Hey! Saw your profile and your fast execution mindset really stood out.
+`Hey ${name}, I came across your profile and noticed your ${profile.type.toLowerCase()} approach.
 
-We built an AI system that saves teams hours every week by automating repetitive work.
+We built an AI system that helps teams automate repetitive tasks and move faster.
 
 Would love to show you a quick demo if you're interested.`;
 
   document.getElementById("li").innerText =
-`Hi, I came across your profile and noticed your focus on rapid execution.
+`Hi ${name},
 
-We’ve built a solution that helps teams automate repetitive tasks and move faster.
+I saw your profile and your ${profile.type.toLowerCase()} mindset stood out.
+
+We’ve built an AI solution that helps teams automate repetitive workflows and improve speed.
 
 Would you be open to a short demo?`;
 
-  document.getElementById("reply").innerText = "82%";
+  document.getElementById("reply").innerText = profile.reply;
   document.getElementById("tone").innerText = "High";
-  document.getElementById("strategy").innerText = "Short Direct";
+  document.getElementById("strategy").innerText = profile.tone;
 
   showTab("email");
 }
@@ -74,28 +80,11 @@ function showTab(tab) {
 
 function automation() {
   const box = document.getElementById("automation");
-  box.innerHTML = "Connecting to automation engine...";
-
-  setTimeout(() => {
-    box.innerHTML += "<br>Automation Agent: Lead stored in CRM";
-  }, 700);
-
-  setTimeout(() => {
-    box.innerHTML += "<br>Automation Agent: Message queued";
-  }, 1400);
-
-  setTimeout(() => {
-    box.innerHTML += "<br>Automation Agent: Email scheduled";
-  }, 2100);
-
-  setTimeout(() => {
-    box.innerHTML += "<br>Automation Agent: Campaign ready";
-  }, 2800);
-}
-
-function speakResult() {
-  const msg = new SpeechSynthesisUtterance(
-    "Analysis complete. Target is a fast decision maker. Strategy: short direct outreach."
-  );
-  speechSynthesis.speak(msg);
+  box.innerHTML = `
+  Automation Agent:
+  - Lead stored in CRM
+  - Message queued
+  - Email scheduled
+  - Campaign ready
+  `;
 }
