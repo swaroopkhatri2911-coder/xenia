@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Skynex AI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>SKYNEX AI</h1>
+    <p>Multi-Agent Outreach Control Panel</p>
+  </header>
+
+  <!-- Input -->
+  <div class="panel">
+    <input id="url" placeholder="Paste LinkedIn Profile URL">
+    <button onclick="startAnalysis()">Analyze Profile</button>
+  </div>
+
+  <!-- Agent Cards -->
+  <div class="agent-grid">
+    <div class="agent">Personality Agent</div>
+    <div class="agent">Emotion Agent</div>
+    <div class="agent">Strategy Agent</div>
+    <div class="agent">Message Agent</div>
+    <div class="agent">Automation Agent</div>
+  </div>
+
+  <!-- Discussion Log -->
+  <div id="agents" class="panel log"></div>
+
+  <!-- Message Tabs -->
+  <div class="panel">
+    <div class="tabs">
+      <button onclick="showTab('email')">Email</button>
+      <button onclick="showTab('wa')">WhatsApp</button>
+      <button onclick="showTab('li')">LinkedIn</button>
+    </div>
+
+    <div id="email" class="tab"></div>
+    <div id="wa" class="tab"></div>
+    <div id="li" class="tab"></div>
+  </div>
+
+  <!-- Analytics -->
+  <div class="dashboard">
+    <div class="card">
+      <h3>Reply Probability</h3>
+      <p id="reply">--</p>
+    </div>
+    <div class="card">
+      <h3>Tone Match</h3>
+      <p id="tone">--</p>
+    </div>
+    <div class="card">
+      <h3>Strategy</h3>
+      <p id="strategy">--</p>
+    </div>
+  </div>
+
+  <!-- Chart -->
+  <div class="panel">
+    <h3>Strategy Analysis</h3>
+    <div class="bar"><span id="bar1"></span> Short Direct – 82%</div>
+    <div class="bar"><span id="bar2"></span> Formal – 55%</div>
+    <div class="bar"><span id="bar3"></span> Emotional – 40%</div>
+  </div>
+
+  <!-- Automation -->
+  <button onclick="automation()">Run Automation</button>
+  <div id="automation" class="panel log"></div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
